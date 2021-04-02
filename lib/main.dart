@@ -2,6 +2,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'nm_box.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,23 +36,21 @@ class MainCard extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    NMButton(icon: Icons.arrow_back),
-                    NMButton(icon: Icons.menu),
                   ],
                 ),
                 AvatarImage(),
                 SizedBox(height: 15),
                 Text(
-                  'Steven Dz',
+                  'Woodens G. Fanfan',
                   style: TextStyle(fontSize: 30, fontWeight: FontWeight.w700),
                 ),
                 Text(
-                  'Amsterdam',
+                  'Port-au-Prince Haiti',
                   style: TextStyle(fontWeight: FontWeight.w200),
                 ),
                 SizedBox(height: 15),
                 Text(
-                  'Mobile App Developer and Game Designer',
+                  'Mobile App Developer and Marketing Manager',
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 20),
                 ),
@@ -59,11 +58,35 @@ class MainCard extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    NMButton(icon: FontAwesomeIcons.facebookF),
+                    FlatButton(onPressed: () async {
+                      const url = 'https://www.facebook.com/woodens.fanfagregoire';
+                      if (await canLaunch(url)) {
+                        await launch(url);
+                      }else{
+                        throw 'Could not launch $url';
+                      }
+                    },
+                        child: NMButton(icon: FontAwesomeIcons.facebookF)),
                     SizedBox(width: 25),
-                    NMButton(icon: FontAwesomeIcons.twitter),
+                    FlatButton(onPressed: () async {
+                      const url = 'https://twitter.com/woodyfanfan';
+                      if (await canLaunch(url)) {
+                        await launch(url);
+                      }else{
+                        throw 'Could not launch $url';
+                      }
+                    },
+                        child: NMButton(icon: FontAwesomeIcons.twitter)),
                     SizedBox(width: 25),
-                    NMButton(icon: FontAwesomeIcons.instagram),
+                    FlatButton(onPressed: () async {
+                      const url = 'https://www.instagram.com/woodensfg/';
+                      if (await canLaunch(url)) {
+                        await launch(url);
+                      }else{
+                        throw 'Could not launch $url';
+                      }
+                    },
+                        child: NMButton(icon: FontAwesomeIcons.instagram)),
                   ],
                 ),
                 Spacer(),
@@ -136,7 +159,7 @@ class MainCard extends StatelessWidget {
                           ),
                           SizedBox(height: 15),
                           Text(
-                            'Credits to Planet X on Dribbble\nfor this design',
+                            'Credits The Spot',
                             textAlign: TextAlign.center,
                           ),
                           SizedBox(height: 35),
@@ -241,7 +264,7 @@ class AvatarImage extends StatelessWidget {
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             image: DecorationImage(
-              image: AssetImage('assets/avatar.JPG'),
+              image: AssetImage('assets/fanfan.jpg'),
             ),
           ),
         ),
